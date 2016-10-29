@@ -121,10 +121,10 @@
                 <option value="O-" @if($user->blood_group == 'O-') selected @endif>O-</option>           
             </select>
           </div>
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label for="">Image</label>
             <input type="file" name="photo"></input>
-          </div>
+          </div> --}}
         </div>  
         </div>
         <div class="box-footer">
