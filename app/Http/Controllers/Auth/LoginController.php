@@ -36,4 +36,11 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+
+
+    //overriding method
+    public function username()
+    {
+        return 'name';
+    }
 }

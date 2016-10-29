@@ -8,6 +8,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use DB;
+
 class RegisterController extends Controller
 {
     /*
@@ -71,5 +73,12 @@ class RegisterController extends Controller
         $user->roles()->attach($role_student);
         
         return $user;
+    }
+
+    //override method
+     public function showRegistrationForm()
+    {   
+        $rooms = DB::table('rooms')->get();
+        return view('auth.register', compact('rooms'));
     }
 }

@@ -129,7 +129,7 @@ trait AuthenticatesUsers
      */
     public function username()
     {
-        return 'name';
+        return 'email';
     }
 
     /**
