@@ -89,17 +89,17 @@ class RegisterController extends Controller
 
         $this->validator($request->all())->validate();
 
-        $this->create($request->all());
+        $user = $this->create($request->all());
         //dd($request->role);
         if($request->role == 'student'){
-            $last_user_id = DB::table('users')->latest()->value('id');
+            //$last_user_id = DB::table('users')->latest()->value('id');
             DB::table('user_infos')->insert(
-                ['user_id' => $last_user_id, 'room_id' => $request->room_no, 'roll_no' => $request->name]
+                ['user_id' => $user->id, 'room_id' => $request->room_no, 'roll_no' => $request->name]
             );
         } else {
-            $last_user_id = DB::table('users')->latest()->value('id');
+           // $last_user_id = DB::table('users')->latest()->value('id');
             DB::table('user_infos')->insert(
-                ['user_id' => $last_user_id]
+                ['user_id' => $user->id]
             );
         }
         return redirect($this->redirectPath())->with(['success' => 'Successfully Registered']);
