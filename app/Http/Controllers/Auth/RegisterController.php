@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 use DB;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -76,9 +77,31 @@ class RegisterController extends Controller
     }
 
     //override method
-     public function showRegistrationForm()
+    public function showRegistrationForm()
     {   
         $rooms = DB::table('rooms')->get();
         return view('auth.register', compact('rooms'));
+    }
+
+    public function register(Request $request)
+    {
+        //dd($request->role);
+
+        $this->validator($request->all())->validate();
+
+        $this->create($request->all());
+        //dd($request->role);
+        if($request->role == 'student'){
+            $last_user_id = DB::table('users')->latest()->value('id');
+            DB::table('user_infos')->insert(
+                ['user_id' => $last_user_id, 'room_id' => $request->room_no, 'roll_no' => $request->name]
+            );
+        } else {
+            $last_user_id = DB::table('users')->latest()->value('id');
+            DB::table('user_infos')->insert(
+                ['user_id' => $last_user_id]
+            );
+        }
+        return redirect($this->redirectPath())->with(['success' => 'Successfully Registered']);
     }
 }
