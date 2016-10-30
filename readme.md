@@ -30,7 +30,7 @@ composer install
 
 php artisan key:generate
 
-php artisan migrate:refresh –seed
+php artisan migrate:refresh –-seed
 
 php artisan serve
 অবশ্যই প্রজেক্টের কোন অংশ না বুঝলে জানাবেন। আর এইটি একটি ফ্রি প্রজেক্ট, তাই এইটি দিয়ে উপকৃত হওয়ার চেষ্টা করুন। কেউ এই প্রজেক্ট দিয়ে ব্যাবসায়িক কিছু করা থেকে বিরত থাকবেন।
